@@ -11,7 +11,7 @@ import com.ing.client.tm.tmClient.util.MetricsUtility;
 import com.ing.client.tm.tmClient.vo.MetricsVO;
 
 @Service
-public class TravelServiceImpl implements TravelService{
+public class HealthServiceImpl implements HealthService {
 
 	@Autowired
 	private RestTemplate restTemplate;

@@ -3,13 +3,13 @@ package com.ing.client.tm.tmClient.util;
 import java.util.List;
 import com.ing.client.tm.tmClient.mapping.Root;
 import com.ing.client.tm.tmClient.mapping.Trace;
-import com.ing.client.tm.tmClient.vo.MetricsVO;
+import com.ing.client.tm.tmClient.entities.Metrics;
 
 public class MetricsUtility {
 	int status2xxCount, status4xxCount, status5xxCount, totalCount = 0;
 	int maxTime, minTime = 0;
 	
-	public MetricsVO processAndReturnMetrics(Root traceData) {
+	public Metrics processAndReturnMetrics(Root traceData) {
 		List<Trace> traces = traceData.getTraces();
 		if(traces!=null && traces.size() != 0) {
 			traces.forEach((t) -> {
@@ -29,7 +29,7 @@ public class MetricsUtility {
 						minTime = t.getTimeTaken();
 			});
 		}
-		MetricsVO metricsVO = new MetricsVO();
+		Metrics metricsVO = new Metrics();
 		metricsVO.setTotalCount(totalCount);
 		metricsVO.setStatusOKCount(status2xxCount);
 		metricsVO.setStatus4XXCount(status4xxCount);

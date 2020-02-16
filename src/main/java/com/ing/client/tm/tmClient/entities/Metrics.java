@@ -1,6 +1,6 @@
-package com.ing.client.tm.tmClient.vo;
+package com.ing.client.tm.tmClient.entities;
 
-public class MetricsVO {
+public class Metrics {
 	
 	private int maxTime;
 	private int minTime;

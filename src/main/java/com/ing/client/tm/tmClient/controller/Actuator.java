@@ -6,7 +6,7 @@ import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 import com.ing.client.tm.tmClient.service.HealthService;
-import com.ing.client.tm.tmClient.vo.MetricsVO;
+import com.ing.client.tm.tmClient.entities.Metrics;
 
 @CrossOrigin
 @RestController
@@ -17,7 +17,7 @@ public class Actuator {
 	private HealthService travelService;
 	
 	@GetMapping("getHealthMetrics")
-	public MetricsVO getMetricsWithFilter() {
+	public Metrics getMetricsWithFilter() {
 		return travelService.getHealthMetrics();
 	}
 }

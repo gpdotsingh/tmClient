@@ -8,7 +8,7 @@ import org.springframework.web.client.RestTemplate;
 import com.ing.client.tm.tmClient.common.AppConfig;
 import com.ing.client.tm.tmClient.mapping.Root;
 import com.ing.client.tm.tmClient.util.MetricsUtility;
-import com.ing.client.tm.tmClient.vo.MetricsVO;
+import com.ing.client.tm.tmClient.entities.Metrics;
 
 @Service
 public class HealthServiceImpl implements HealthService {
@@ -19,11 +19,11 @@ public class HealthServiceImpl implements HealthService {
 	@Autowired
 	AppConfig appConfig;
 
-	public MetricsVO getHealthMetrics() {
+	public Metrics getHealthMetrics() {
 		String url = appConfig.getActuatorUrl() + "/actuator/httptrace";
 		Root traceData = restTemplate.getForEntity(url , Root.class).getBody();
 		MetricsUtility utility = new MetricsUtility();
-		MetricsVO metricsVO = utility.processAndReturnMetrics(traceData);
+		Metrics metricsVO = utility.processAndReturnMetrics(traceData);
 		return metricsVO;
 	}
 }

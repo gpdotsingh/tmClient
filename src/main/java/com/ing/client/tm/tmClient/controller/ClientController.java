@@ -21,7 +21,7 @@ import static org.springframework.web.bind.annotation.RequestMethod.GET;
 
 @CrossOrigin
 @Controller
-public class HomeController {
+public class ClientController {
 
     @Autowired
     OAuth2RestTemplate oAuth2RestTemplate;

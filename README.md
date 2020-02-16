@@ -15,7 +15,7 @@ Clone this repo and start application by
 # Run
 
     mvn spring-boot:run
-
+If mvn is not installed on your system, please use java -jar 
 	
 =================================================================================================
 
@@ -26,7 +26,7 @@ Project run on port 8081 , 8080 , 4200 and 9001
 
 Hit URL 
 
-http://localhost:4200/ after starting all the server 
+http://localhost:8081/ after starting all the server 
 
 Two tabs will appear Transaction Management and Request Monitoring
 
@@ -80,3 +80,11 @@ Two tabs will appear Transaction Management and Request Monitoring
 		and Request Status Code with its count.
 		
 	 npm install --save-dev @angular-devkit/build-angular	
+	 
+	 
+## Functionality.
+
+    Client is communicating with tmServer and for communicating securly they are using Oauth
+    client credential authorization type.
+    
+    Server contain the in memory database 	 

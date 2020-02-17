@@ -15,7 +15,6 @@ Clone this repo and start application by
 # Run
 
     mvn spring-boot:run
-If mvn is not installed on your system, please use java -jar 
 	
 =================================================================================================
 

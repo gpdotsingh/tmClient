@@ -21,18 +21,19 @@ public class TransactionDataImpl implements  TransactionData{
     OAuth2RestTemplate oAuth2RestTemplate;
     @Autowired
     AppConfig appConfig;
-    public Transaction[] getTransactions(@DateTimeFormat(pattern = "yyyy-MM-dd HH:mm:ss") @RequestParam("startDate") LocalDateTime startDate, @DateTimeFormat(pattern = "yyyy-MM-dd HH:mm:ss") @RequestParam("endtDate") LocalDateTime endtDate, @RequestParam(value = "name", required = false) String name) {
+    public Transaction[] getTransactions(@DateTimeFormat(pattern = "yyyy-MM-dd HH:mm:ss") @RequestParam("startDate") LocalDateTime startDate, @DateTimeFormat(pattern = "yyyy-MM-dd HH:mm:ss") @RequestParam("endtDate") LocalDateTime endtDate, @RequestParam(value = "name", required = false) String name) throws IllegalArgumentException{
         UriComponentsBuilder uriBuilder = UriComponentsBuilder.fromUriString(appConfig.getRootUrl());
         uriBuilder.queryParam("startDate",startDate);
         uriBuilder.queryParam("endtDate",endtDate);
         uriBuilder.queryParam("name",name);
-
+        if(endtDate.isBefore(startDate))
+            throw new IllegalArgumentException();
         return oAuth2RestTemplate.getForEntity(uriBuilder.build().toString(),
                 Transaction[].class).getBody();
     }
 
 
-    public List<String> getNames(@RequestParam(value = "nameChar", required = false, defaultValue = "A") String name) {
+    public List<String> getNames(@RequestParam(value = "nameChar", required = false, defaultValue = "A") String name) throws IllegalArgumentException{
         UriComponentsBuilder uriBuilder = UriComponentsBuilder.fromUriString(appConfig.getNameUrl());
         uriBuilder.queryParam("nameChar",name);
         return oAuth2RestTemplate.getForEntity(uriBuilder.build().toString(),

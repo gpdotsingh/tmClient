@@ -433,7 +433,7 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony import */ var _angular_http__WEBPACK_IMPORTED_MODULE_7__ = __webpack_require__(/*! @angular/http */ "./node_modules/@angular/http/fesm5/http.js");
 /* harmony import */ var _angular_forms__WEBPACK_IMPORTED_MODULE_8__ = __webpack_require__(/*! @angular/forms */ "./node_modules/@angular/forms/fesm5/forms.js");
 /* harmony import */ var ng2_charts__WEBPACK_IMPORTED_MODULE_9__ = __webpack_require__(/*! ng2-charts */ "./node_modules/ng2-charts/fesm5/ng2-charts.js");
-/* harmony import */ var angular_bootstrap_datetimepicker__WEBPACK_IMPORTED_MODULE_10__ = __webpack_require__(/*! angular-bootstrap-datetimepicker */ "./node_modules/angular-bootstrap-datetimepicker/fesm5/angular-bootstrap-datetimepicker.js");
+/* harmony import */ var angular2_datetimepicker__WEBPACK_IMPORTED_MODULE_10__ = __webpack_require__(/*! angular2-datetimepicker */ "./node_modules/angular2-datetimepicker/index.js");
 
 
 
@@ -461,8 +461,7 @@ var AppModule = /** @class */ (function () {
                 _app_routing_module__WEBPACK_IMPORTED_MODULE_3__["AppRoutingModule"],
                 _angular_forms__WEBPACK_IMPORTED_MODULE_8__["FormsModule"],
                 ng2_charts__WEBPACK_IMPORTED_MODULE_9__["ChartsModule"],
-                angular_bootstrap_datetimepicker__WEBPACK_IMPORTED_MODULE_10__["DlDateTimeDateModule"],
-                angular_bootstrap_datetimepicker__WEBPACK_IMPORTED_MODULE_10__["DlDateTimePickerModule"],
+                angular2_datetimepicker__WEBPACK_IMPORTED_MODULE_10__["AngularDateTimePickerModule"]
             ],
             providers: [],
             bootstrap: [_app_component__WEBPACK_IMPORTED_MODULE_4__["AppComponent"]]
@@ -570,7 +569,7 @@ module.exports = "\n/*# sourceMappingURL=data:application/json;base64,eyJ2ZXJzaW
 /*! no static exports found */
 /***/ (function(module, exports) {
 
-module.exports = "\r\n\r\n\r\n    <div class=\"container\">\r\n      <h4 style=\"margin-bottom: 50px;\">Transaction List</h4>\r\n      <h5 style=\"margin-bottom: 50px;\">For ideal scenario search from 2010 to 2019</h5>\r\n      <form #tmForm=\"ngForm\" (ngSubmit)=\"onSubmit()\" name=\"form\" autocomplete=\"off\">  \r\n          <div class=\"row\">            \r\n            <div class=\"col-sm-4\" >\r\n                  <span style=\"margin-left: 0px;margin-right: 40px;\" ><b>From Date :</b></span>\r\n                  <dl-date-time-picker\r\n                    startView=\"day\"\r\n                    maxView=\"year\"\r\n                    minView=\"minute\"\r\n                    minuteStep=\"5\"\r\n                    [(ngModel)]='from'\r\n                    format='yyyy-MM-dd HH:mm:ss'\r\n                    id=\"from\"\r\n                    name=\"from\"\r\n                    (change)=\"onCustomDateChange($event,'from')\"\r\n                    >\r\n                  </dl-date-time-picker>\r\n              </div>\r\n              <div class=\"col-sm-4\" >\r\n                <span style=\"margin-left: 0px;margin-right: 40px;\" ><b>To Date :</b></span>\r\n                <dl-date-time-picker\r\n                  startView=\"day\"\r\n                  maxView=\"year\"\r\n                  minView=\"minute\"\r\n                  minuteStep=\"5\"\r\n                  [(ngModel)]='to'\r\n                  format='yyyy-MM-dd HH:mm:ss'\r\n                  id=\"to\"\r\n                  name=\"to\"\r\n                  (change)=\"onCustomDateChange($event,'from')\">\r\n                </dl-date-time-picker>\r\n            </div>\r\n\r\n\r\n              <div class=\"col-sm-4\">\r\n                <div class=\"row\">\r\n                  <div class=\"col-sm-8\">\r\n                      <span style=\"margin-left: 0px;margin-right: 40px;\"><b>NAME:</b></span> \r\n                        <input type=\"text\"   name=\"namechar\"  (input)=\"onSearchChange([$event.target.value])\" placeholder=\"Enter NAME\" id=\"namechar\" >\r\n                          <div  class=\"dropdwnListContainer\"  style=\"max-height: 100px;overflow-y: scroll; background-color:lavender;\">\r\n                              <div  *ngFor=\"let map  of  names\">  \r\n                                  <div class=\"dropdwList\"  id=\"{{map}}\" style=\"padding-left: 10px;\" (click)=\"setInputTextvalue(map)\">\r\n                                      <h6><u>{{map}}</u></h6>\r\n                                </div>\r\n                              </div> \r\n                          </div>\r\n                    </div>\r\n                    <div class=\"col-sm-4\">\r\n                      <div style=\"margin-top: 23px;\"><button  class=\"btn btn-light btn-sm\" (click)=\"removeName()\" type=\"button\"><b>clear name:</b></button>\r\n                      </div>\r\n                    </div>    \r\n                  </div>\r\n              </div>\r\n\r\n              <div class=\"col-sm-4 center\" ><input class=\"searchButton\" type=\"submit\" value=\"Search Transaction details\">\r\n              </div> \r\n          </div>\r\n      </form>\r\n    </div>\r\n    \r\n    <!--Display Transaction Data-->\r\n<div  style=\"margin-top: 15px; background-color:aliceblue;\" [hidden]=\"hide\" *ngIf=\"displayData\">\r\n<div class=\"col-sm-12\" >\r\n          \r\n  <table class=\"table table-striped\">\r\n    <thead>\r\n      <tr>\r\n      <th scope=\"col\">#</th>\r\n      <th scope=\"col\">Name </th>\r\n      <th scope=\"col\">Email Id</th>\r\n      <th scope=\"col\">Transaction Id</th>\r\n      <th scope=\"col\">Transaction Time</th>\r\n      <th scope=\"col\">User Availablity Status </th>\r\n      </tr>\r\n    </thead>\r\n    <tbody >\r\n      <tr *ngFor=\"let transaction of transactions; index as i\">\r\n          <th scope=\"row\">{{ transaction.id}}</th>\r\n          <td>\r\n            {{ transaction.name}}\r\n          </td>\r\n          <td>\r\n            {{ transaction.email}}\r\n          </td>\r\n          <td>\r\n            {{ transaction.transactioId}}\r\n          </td>\r\n          <td>\r\n            {{ transaction.transactionTime}}\r\n          </td>\r\n          <td>\r\n            {{ transaction.verifiedUser}}\r\n          </td>\t   \r\n      </tr>\r\n    </tbody>\r\n  </table>\r\n</div>\r\n</div>\t\t\r\n\r\n"
+module.exports = "<div class=\"container-fluid\">   \r\n    <div class=\"row\">\r\n            <div class=\"col-sm-4\" style=\"padding-left: 119px;\">\r\n                  <div class=\"form-group\">\r\n                    <label for=\"datetimepicker\"  style=\"font-weight: bold\">Date Time Picker:</label>\r\n                    <angular2-date-picker class=\"form-control\" id=\"datetimepicker\" name =\"from\" [(ngModel)]=\"from\" [settings]=\"settings\" style=\"padding: 0.2 rem 0.1 rem; width:267px\"></angular2-date-picker>\r\n                  </div>\r\n            </div>\r\n\r\n            <div class=\"col-sm-4\">\r\n              <div class=\"form-group\">\r\n                <label for=\"datetimepicker\" style=\"font-weight: bold\">Date Time Picker:</label>\r\n                <angular2-date-picker class=\"form-control\" id=\"datetimepicker\" name =\"to\" [(ngModel)]=\"to\" [settings]=\"settings\" style=\"padding: 0.2 rem 0.1 rem; width:267px\"></angular2-date-picker>\r\n              </div>\r\n            </div>\r\n\r\n            <div class=\"col-sm-4\">\r\n              <div class=\"row\">\r\n                <div class=\"col-sm-8\">\r\n                    <span style=\"margin-left: 0px;margin-right: 40px;\"><b>NAME:</b></span> \r\n                      <input type=\"text\"   name=\"namechar\"  (input)=\"onSearchChange([$event.target.value])\" placeholder=\"Enter NAME\" id=\"namechar\" style=\"margin-top: 13px;\">\r\n                        <div  class=\"dropdwnListContainer\"  style=\"max-height: 100px;overflow-y: scroll; background-color:lavender;\">\r\n                            <div  *ngFor=\"let map  of  names\">  \r\n                                <div class=\"dropdwList\"  id=\"{{map}}\" style=\"padding-left: 10px;\" (click)=\"setInputTextvalue(map)\">\r\n                                    <h6><u>{{map}}</u></h6>\r\n                              </div>\r\n                            </div> \r\n                        </div>\r\n                  </div>\r\n                  <div class=\"col-sm-4\">\r\n                    <div style=\"margin-top: 36px;\"><button  class=\"btn btn-light btn-sm\" (click)=\"removeName()\" type=\"button\"><b>clear name:</b></button>\r\n                    </div>\r\n                  </div>    \r\n                </div>\r\n            </div>\r\n\r\n</div>\r\n</div>\r\n\r\n    <div class=\"container\">\r\n       <form #tmForm=\"ngForm\" (ngSubmit)=\"onSubmit()\" name=\"form\" autocomplete=\"off\">  \r\n          <div class=\"row\">                       \r\n              <div style=\"padding-left: 119px;margin-left: 300px;\" class=\"col-sm-6 center\" ><input class=\"searchButton\" type=\"submit\" value=\"Search Transaction details\">\r\n              </div> \r\n              <div class=\"col-sm-6 center\"><h5>For ideal scenario search from 2010 to 2019</h5></div>\r\n          </div>\r\n      </form>\r\n    </div>\r\n    \r\n    <!--Display Transaction Data-->\r\n<div  style=\"margin-top: 15px; background-color:aliceblue;\" [hidden]=\"hide\" *ngIf=\"displayData\">\r\n<div class=\"col-sm-12\" >\r\n          \r\n  <table class=\"table table-striped\">\r\n    <thead>\r\n      <tr>\r\n      <th scope=\"col\">#</th>\r\n      <th scope=\"col\">Name </th>\r\n      <th scope=\"col\">Email Id</th>\r\n      <th scope=\"col\">Transaction Id</th>\r\n      <th scope=\"col\">Transaction Time</th>\r\n      <th scope=\"col\">User Availablity Status </th>\r\n      </tr>\r\n    </thead>\r\n    <tbody >\r\n      <tr *ngFor=\"let transaction of transactions; index as i\">\r\n          <th scope=\"row\">{{ transaction.id}}</th>\r\n          <td>\r\n            {{ transaction.name}}\r\n          </td>\r\n          <td>\r\n            {{ transaction.email}}\r\n          </td>\r\n          <td>\r\n            {{ transaction.transactioId}}\r\n          </td>\r\n          <td>\r\n            {{ transaction.transactionTime}}\r\n          </td>\r\n          <td>\r\n            {{ transaction.verifiedUser}}\r\n          </td>\t   \r\n      </tr>\r\n    </tbody>\r\n  </table>\r\n</div>\r\n</div>\t\t\r\n\r\n"
 
 /***/ }),
 
@@ -596,8 +595,16 @@ __webpack_require__.r(__webpack_exports__);
 var TmComponent = /** @class */ (function () {
     function TmComponent(_service) {
         this._service = _service;
+        this.date = new Date();
+        this.settings = {
+            bigBanner: true,
+            timePicker: true,
+            format: 'dd-MM-yyyy hh:mm a',
+            defaultOpen: false,
+            closeOnSelect: false
+        };
         this.names = [];
-        var now = moment__WEBPACK_IMPORTED_MODULE_3__();
+        this.from = new Date();
     }
     TmComponent.prototype.ngOnInit = function () {
         this.displayData = false;
@@ -627,7 +634,7 @@ var TmComponent = /** @class */ (function () {
             _this.transactions = _this._service.transactions;
             _this.displayData = true;
             $.closeLoader();
-            if (_this.transaction == undefined) {
+            if (Object.keys(_this.transactions).length == 0) {
                 alert("Please increase your date range");
             }
         }, function (error) {
@@ -666,14 +673,6 @@ var TmComponent = /** @class */ (function () {
         $(".dropdwnListContainer").css("display", "none");
         $("#namechar").val("");
         return;
-    };
-    TmComponent.prototype.onCustomDateChange = function (event, source) {
-        if (source == 'from' && event.value != undefined) {
-            alert("Transaction date from " + event.value);
-        }
-        else if (source == 'to' && event.value != undefined) {
-            alert("Transaction date upto " + event.value);
-        }
     };
     TmComponent = tslib__WEBPACK_IMPORTED_MODULE_0__["__decorate"]([
         Object(_angular_core__WEBPACK_IMPORTED_MODULE_1__["Component"])({

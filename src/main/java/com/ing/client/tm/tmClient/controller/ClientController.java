@@ -4,6 +4,7 @@ import com.ing.client.tm.tmClient.entities.Transaction;
 import com.ing.client.tm.tmClient.service.TransactionData;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.format.annotation.DateTimeFormat;
+import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.CrossOrigin;
@@ -28,14 +29,14 @@ public class ClientController {
     @RequestMapping(value = "/client/tm",method = RequestMethod.GET)
     public ResponseEntity<Transaction[]> getTransaction(@RequestParam(value = "startDate")  @DateTimeFormat(pattern = "yyyy-MM-dd HH:mm:ss") LocalDateTime  startDate, @RequestParam(value = "endtDate")  @DateTimeFormat(pattern = "yyyy-MM-dd HH:mm:ss") LocalDateTime  endtDate, @RequestParam(value = "name", required=false) String name)
     {
-        return ResponseEntity.accepted().body(transactionData.getTransactions(startDate, endtDate, name));
+        return ResponseEntity.status(HttpStatus.OK).body(transactionData.getTransactions(startDate, endtDate, name));
     }
 
 
-    @RequestMapping(method = GET,value= {"/client/name"})
+    @RequestMapping(method = GET,value="/client/name")
     public ResponseEntity<List<String>> getDistinctNameList(@RequestParam(value = "nameChar", required=false,defaultValue = "A") String name)
     {
-        return ResponseEntity.accepted().body(transactionData.getNames(name));
+        return ResponseEntity.status(HttpStatus.OK).body(transactionData.getNames(name));
     }
 
 

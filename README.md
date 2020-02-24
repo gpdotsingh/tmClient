@@ -16,9 +16,13 @@ Clone this repo and start application by
 
     mvn spring-boot:run
 	
+=================================================================================================	
+Note:=>	Only start Client and tm server application using the command. If the maven is not installed
+then you can run application also by java -jar jarname.
+Angular files are converted into static files and same is present in client code.
 =================================================================================================
 
-Project run on port 8081 , 8080 , 4200 and 9001 
+Project run on port 8081 , 8080  and 9001 
 
 =================================================================================================
 

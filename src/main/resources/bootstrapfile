@@ -1,97 +1,93 @@
-<!DOCTYPE html>
-<html lang="en">
+<div class="container">
+  <h1 class="mt-4">Page Heading</h1>
 
-<head>
-  <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css">
-  <title>Bootstrap Page</title>
-</head>
-
-<body>
-  <div class="container">
-    <h1 class="mt-4">Page Heading</h1>
-
-    <div class="row mt-4">
-      <div class="col-sm-2">
-        <strong>Column 1</strong>
-      </div>
-      <div class="col-sm-4">
-        <input type="text" class="form-control" placeholder="Text Box">
-      </div>
-      <div class="col-sm-2">
-        <strong>Column 2</strong>
-      </div>
-      <div class="col-sm-4">
-        <select class="form-control" multiple>
-          <option value="a">A</option>
-          <option value="b">B</option>
-          <option value="c">C</option>
-          <option value="d">D</option>
-          <option value="e">E</option>
-        </select>
-      </div>
+  <div class="row mt-4">
+    <div class="col-sm-2">
+      <strong>Column 1</strong>
     </div>
-
-    <div class="row mt-4">
-      <div class="col-sm-2">
-        <strong>Column 3</strong>
-      </div>
-      <div class="col-sm-4">
-        <div class="dropdown">
-          <button class="btn btn-secondary dropdown-toggle" type="button" id="multiSelectDropdown" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-            Select Options
-          </button>
-          <div class="dropdown-menu" aria-labelledby="multiSelectDropdown">
-            <a class="dropdown-item" href="#">Option 1</a>
-            <a class="dropdown-item" href="#">Option 2</a>
-            <a class="dropdown-item" href="#">Option 3</a>
-            <a class="dropdown-item" href="#">Option 4</a>
-          </div>
-        </div>
-        <div class="mt-2">
-          <strong>Selected Values:</strong>
-          <span id="selectedValues"></span>
-        </div>
-      </div>
-      <div class="col-sm-2">
-        <strong>Column 4</strong>
-      </div>
-      <div class="col-sm-4">
-        <div class="form-check">
-          <input class="form-check-input" type="checkbox" id="checkbox">
-          <label class="form-check-label" for="checkbox">
-            Check Box
-          </label>
-        </div>
-      </div>
+    <div class="col-sm-4">
+      <input type="text" class="form-control" placeholder="Text Box">
     </div>
-
+    <div class="col-sm-2">
+      <strong>Column 2</strong>
+    </div>
+    <div class="col-sm-4">
+      <select class="form-control" multiple [(ngModel)]="selectedOptions">
+        <option value="a">A</option>
+        <option value="b">B</option>
+        <option value="c">C</option>
+        <option value="d">D</option>
+        <option value="e">E</option>
+      </select>
+    </div>
   </div>
 
-  <script src="https://code.jquery.com/jquery-3.2.1.slim.min.js"></script>
-  <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.12.9/umd/popper.min.js"></script>
-  <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/js/bootstrap.min.js"></script>
+  <div class="row mt-4">
+    <div class="col-sm-2">
+      <strong>Column 3</strong>
+    </div>
+    <div class="col-sm-4">
+      <div class="dropdown">
+        <button class="btn btn-secondary dropdown-toggle" type="button" id="multiSelectDropdown" data-toggle="dropdown"
+          aria-haspopup="true" aria-expanded="false">
+          Select Options
+        </button>
+        <div class="dropdown-menu" aria-labelledby="multiSelectDropdown">
+          <a class="dropdown-item" href="#" (click)="toggleOption('Option 1')">Option 1</a>
+          <a class="dropdown-item" href="#" (click)="toggleOption('Option 2')">Option 2</a>
+          <a class="dropdown-item" href="#" (click)="toggleOption('Option 3')">Option 3</a>
+          <a class="dropdown-item" href="#" (click)="toggleOption('Option 4')">Option 4</a>
+        </div>
+      </div>
+      <div class="mt-2">
+        <strong>Selected Values:</strong>
+        <span>{{ selectedOptions.join(', ') }}</span>
+      </div>
+    </div>
+    <div class="col-sm-2">
+      <strong>Column 4</strong>
+    </div>
+    <div class="col-sm-4">
+      <div class="form-check">
+        <input class="form-check-input" type="checkbox" id="checkbox" [(ngModel)]="checkboxChecked">
+        <label class="form-check-label" for="checkbox">
+          Check Box
+        </label>
+      </div>
+    </div>
+  </div>
+</div>
+------------------------
 
-  <script>
-    $(document).ready(function () {
-      var selectedValues = [];
+import { Component } from '@angular/core';
 
-      // Update selected values when dropdown items are clicked
-      $('.dropdown-item').click(function (e) {
-        e.preventDefault();
-        var value = $(this).text();
-        if (!selectedValues.includes(value)) {
-          selectedValues.push(value);
-        } else {
-          selectedValues = selectedValues.filter(function (val) {
-            return val !== value;
-          });
-        }
-        $('#selectedValues').text(selectedValues.join(', '));
-      });
-    });
-  </script>
-</body>
+@Component({
+  selector: 'app-root',
+  templateUrl: './app.component.html',
+  styleUrls: ['./app.component.css']
+})
+export class AppComponent {
+  selectedOptions: string[] = [];
+  checkboxChecked: boolean = false;
 
-</html>
+  toggleOption(option: string) {
+    if (this.selectedOptions.includes(option)) {
+      this.selectedOptions = this.selectedOptions.filter(val => val !== option);
+    } else {
+      this.selectedOptions.push(option);
+    }
+  }
+}
+------------------
+
+.container {
+  margin-top: 20px;
+}
+
+.mt-4 {
+  margin-top: 4rem;
+}
+
+.mt-2 {
+  margin-top: 2rem;
+}
